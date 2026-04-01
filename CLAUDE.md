@@ -48,7 +48,23 @@ quiz-game/
 ```
 
 ## Development Guidelines
-<!-- Coding conventions, patterns, and preferences go here -->
+
+### Go (backend)
+- **Formatter:** `gofmt` (built into Go toolchain) — run automatically by `golangci-lint`
+- **Linter:** `golangci-lint` with config in `backend/.golangci.yml`
+  - Enabled: `errcheck`, `govet`, `staticcheck`, `unused`, `gosimple`, `ineffassign`
+  - Run: `cd backend && golangci-lint run`
+- All errors must be handled — `errcheck` will catch ignored errors
+- No unused variables, functions, or imports
+
+### TypeScript / React (frontend)
+- **Formatter:** Prettier with config in `frontend/.prettierrc`
+  - 2-space indent, double quotes, semicolons, trailing commas (ES5), max line width 100
+  - Run: `cd frontend && npm run format` (fix) or `npm run format:check` (CI check)
+- **Linter:** ESLint with config in `frontend/.eslintrc.cjs`
+  - Extends: `eslint:recommended`, `@typescript-eslint/recommended`, `react-hooks/recommended`
+  - Run: `cd frontend && npm run lint`
+- Strict TypeScript: no unused locals/parameters, no implicit any
 
 ## Testing
 
