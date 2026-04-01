@@ -21,7 +21,7 @@ func Load() *Config {
 
 	return &Config{
 		Port:        getEnv("PORT", "8080"),
-		DatabaseURL: getEnv("DATABASE_URL", ""),
+		DatabaseURL: getEnv("QUIZ_GAME_DATABASE_URL", ""),
 		JWTSecret:   getEnv("JWT_SECRET", ""),
 		AppEnv:      getEnv("APP_ENV", "development"),
 	}
