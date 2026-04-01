@@ -1,0 +1,15 @@
+# Environment
+.env
+
+# Go
+backend/bin/
+backend/tmp/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
