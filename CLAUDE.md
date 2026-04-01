@@ -75,7 +75,7 @@ quiz-game/
 
 ```bash
 # Local dev
-docker-compose up -d          # Start PostgreSQL
+docker compose up -d           # Start PostgreSQL
 cd backend && go run ./cmd/server   # Start backend (port 8080)
 cd frontend && npm run dev    # Start frontend (port 5173)
 

@@ -20,13 +20,13 @@
 
 ---
 
-## Step 2: Scaffold the Project
+## Step 2: Scaffold the Project — DONE
 
-Once the stack is decided:
-- Initialize repo structure
-- Set up linting / formatting
-- Configure CI
-- "Hello world" that connects all layers end-to-end
+- Repo structure initialized
+- Linting / formatting configured (golangci-lint + ESLint + Prettier)
+- CI configured (`.github/workflows/ci.yml`)
+- Hello world connecting all layers end-to-end
+- Post-edit lint hooks configured (`.claude/settings.json`)
 
 ---
 
@@ -34,6 +34,7 @@ Once the stack is decided:
 
 | # | Feature | Notes |
 |---|---|---|
+| 0 | DB migrations | Set up goose; create first migration (`users` table) |
 | 1 | Auth | Register/login, JWT, roles (guest / registered / admin) |
 | 2 | Question bank | CRUD, status lifecycle, admin approval flow |
 | 3 | Room management | Create/join with human-readable room code |
@@ -56,13 +57,13 @@ This is how Claude carries context across sessions without re-explanation.
 
 ---
 
-## Claude Skills & Features to Learn in Parallel
+## Claude Skills & Features — DONE
 
 ### MCPs
 | MCP | Status | Value |
 |---|---|---|
 | GitHub | Configured | Read issues/PRs, create PRs from conversation |
-| PostgreSQL | Add later | Query DB schema and data while debugging |
+| PostgreSQL | Configured | Query DB schema and data while debugging |
 
 ### Claude Code Skills
 | Skill | When to use |
@@ -72,11 +73,9 @@ This is how Claude carries context across sessions without re-explanation.
 | `/update-config` | Configure hooks (auto-lint, auto-test, etc.) |
 
 ### Hooks
-Automate actions on Claude Code events:
-- **Pre-tool-use**: run linter before Claude edits files
-- **Post-tool-use**: auto-run tests after Claude writes code
-
-Set up with `/update-config` when the project has a working test suite.
+Configured in `.claude/settings.json` — fire automatically on every file edit:
+- **PostToolUse** `backend/**`: runs `golangci-lint run`
+- **PostToolUse** `frontend/**`: runs `npm run lint`
 
 ### Parallel Agents
 Claude Code can run subagents in parallel — useful for:

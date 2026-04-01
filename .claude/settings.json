@@ -1,0 +1,23 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; echo \"$f\" | grep -q '/backend/' && (cd /home/oleh/projects/quiz-game/backend && /home/oleh/go/bin/golangci-lint run 2>&1 | head -50); } 2>/dev/null || true",
+            "timeout": 60,
+            "statusMessage": "Running golangci-lint..."
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; echo \"$f\" | grep -q '/frontend/' && (cd /home/oleh/projects/quiz-game/frontend && npm run lint 2>&1 | head -50); } 2>/dev/null || true",
+            "timeout": 60,
+            "statusMessage": "Running ESLint..."
+          }
+        ]
+      }
+    ]
+  }
+}
